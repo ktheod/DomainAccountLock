@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using OneDriveBully.Properties;
+using DomainAccountLock.Properties;
 using System.Drawing;
 
-namespace OneDriveBully
+namespace DomainAccountLock
 {
 	class ContextMenus
 	{
@@ -20,8 +20,8 @@ namespace OneDriveBully
 
 			// Bully Now.
 			item = new ToolStripMenuItem();
-			item.Text = "Bully Now";
-			item.Click += new EventHandler(Bully_Click);
+			item.Text = "Check Now";
+			item.Click += new EventHandler(Check_Click);
 			menu.Items.Add(item);
 
 			// Settings.
@@ -49,9 +49,9 @@ namespace OneDriveBully
 			return menu;
 		}
 
-		void Bully_Click(object sender, EventArgs e)
+		void Check_Click(object sender, EventArgs e)
 		{
-            ProcessIcon.fn.bullyNow();
+            ProcessIcon.fn.CheckNow();
 		}
         void Settings_Click(object sender, EventArgs e)
         {

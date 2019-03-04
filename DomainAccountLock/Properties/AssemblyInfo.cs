@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OneDrive Bully")]
-[assembly: AssemblyDescription("Bully your OneDrive to sync Symbolic Link Folders")]
+[assembly: AssemblyTitle("Domain Account Lock")]
+[assembly: AssemblyDescription("Check your Domain Account for locking")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("K.Theodoridis")]
-[assembly: AssemblyProduct("OneDrive Bully")]
-[assembly: AssemblyCopyright("Copyright © K.Theodoridis 2017")]
+[assembly: AssemblyProduct("Domain Account Lock")]
+[assembly: AssemblyCopyright("Copyright © K.Theodoridis 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("40d64827-6aeb-419d-a997-6bd398ef17f7")]
+[assembly: Guid("548a1ea2-2501-4f27-8fa1-76e2b229bc8a")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

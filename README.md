@@ -1,4 +1,4 @@
-# OneDriveBully
+# DomainAccountLock
 Have a lot of folders you want to sync to OneDrive but not enough space in your main hard drive? 
 
 I did, I had all my photos on the D:\ drive but OneDrive was requiring to copy them to the OneDrive folder in C:\ . But my C:\ is not big enough.
@@ -15,6 +15,6 @@ Saved the best for last, OneDrive is Free!
 
 Bully your OneDrive!
 
-Track OneDrive Bully news and updates also on Facebook: https://www.facebook.com/pg/OneDriveBully
+Track OneDrive Bully news and updates also on Facebook: https://www.facebook.com/pg/DomainAccountLock
 
-Released Application can be downloaded from here: https://github.com/ktheod/OneDriveBully/releases
+Released Application can be downloaded from here: https://github.com/ktheod/DomainAccountLock/releases

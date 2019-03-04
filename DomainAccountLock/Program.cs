@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace OneDriveBully
+namespace DomainAccountLock
 {
 
     static class Program

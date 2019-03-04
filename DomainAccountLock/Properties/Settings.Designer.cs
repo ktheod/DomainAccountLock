@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OneDriveBully.Properties {
+namespace DomainAccountLock.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,12 +26,12 @@ namespace OneDriveBully.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp")]
-        public string OneDriveRootFolder {
+        public string TempFolder {
             get {
-                return ((string)(this["OneDriveRootFolder"]));
+                return ((string)(this["TempFolder"]));
             }
             set {
-                this["OneDriveRootFolder"] = value;
+                this["TempFolder"] = value;
             }
         }
         

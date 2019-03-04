@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using OneDriveBully.Properties;
+using DomainAccountLock.Properties;
 
-namespace OneDriveBully
+namespace DomainAccountLock
 {
     public class ProcessIcon : IDisposable
 	{
@@ -24,7 +24,7 @@ namespace OneDriveBully
 			// Put the icon in the system tray and allow it react to mouse clicks.			
             ni.MouseDoubleClick += new MouseEventHandler(ni_MouseDoubleClick);
 			ni.Icon = Resources.StandardIcon;
-			ni.Text = "OneDrive Bully";
+			ni.Text = "Domain Account Lock";
 
 			// Attach a context menu.
 			ni.ContextMenuStrip = new ContextMenus().Create();
@@ -41,7 +41,7 @@ namespace OneDriveBully
             {
                 if (fn.UserDefinedSettingsExist)
                 {
-                    fn.bullyNow();
+                    fn.CheckNow();
                 }
                 else
                 {

@@ -1,4 +1,4 @@
-﻿namespace OneDriveBully
+﻿namespace DomainAccountLock
 {
 	partial class AboutBox
 	{
@@ -89,7 +89,7 @@
             // 
             this.logoPictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = global::OneDriveBully.Properties.Resources.logo;
+            this.logoPictureBox.Image = global::DomainAccountLock.Properties.Resources.logo;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 10);

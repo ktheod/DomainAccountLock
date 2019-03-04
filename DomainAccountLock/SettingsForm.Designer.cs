@@ -1,4 +1,4 @@
-﻿namespace OneDriveBully
+﻿namespace DomainAccountLock
 {
     partial class SettingsForm
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            this.txt_OneDriveFolder = new System.Windows.Forms.TextBox();
+            this.txt_TempFolder = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_OneDriveFolder = new System.Windows.Forms.Label();
             this.b_SaveSettings = new System.Windows.Forms.Button();
@@ -39,23 +39,17 @@
             this.cb_LoadOnWindowsStartup = new System.Windows.Forms.CheckBox();
             this.fbd_OneDrivePath = new System.Windows.Forms.FolderBrowserDialog();
             this.b_browser = new System.Windows.Forms.Button();
-            this.b_addSymLink = new System.Windows.Forms.Button();
-            this.b_DeleteSymLink = new System.Windows.Forms.Button();
-            this.b_refreshSymLinks = new System.Windows.Forms.Button();
-            this.dgv_SymLinks = new System.Windows.Forms.DataGridView();
             this.fbd_SymLinks = new System.Windows.Forms.FolderBrowserDialog();
-            this.lbl_SymbolicLinks = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_SymLinks)).BeginInit();
             this.SuspendLayout();
             // 
-            // txt_OneDriveFolder
+            // txt_TempFolder
             // 
-            this.txt_OneDriveFolder.Location = new System.Drawing.Point(144, 8);
-            this.txt_OneDriveFolder.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_OneDriveFolder.Name = "txt_OneDriveFolder";
-            this.txt_OneDriveFolder.ReadOnly = true;
-            this.txt_OneDriveFolder.Size = new System.Drawing.Size(580, 20);
-            this.txt_OneDriveFolder.TabIndex = 0;
+            this.txt_TempFolder.Location = new System.Drawing.Point(144, 8);
+            this.txt_TempFolder.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_TempFolder.Name = "txt_TempFolder";
+            this.txt_TempFolder.ReadOnly = true;
+            this.txt_TempFolder.Size = new System.Drawing.Size(287, 20);
+            this.txt_TempFolder.TabIndex = 0;
             // 
             // label1
             // 
@@ -72,13 +66,13 @@
             this.lbl_OneDriveFolder.Location = new System.Drawing.Point(11, 11);
             this.lbl_OneDriveFolder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_OneDriveFolder.Name = "lbl_OneDriveFolder";
-            this.lbl_OneDriveFolder.Size = new System.Drawing.Size(113, 13);
+            this.lbl_OneDriveFolder.Size = new System.Drawing.Size(69, 13);
             this.lbl_OneDriveFolder.TabIndex = 2;
-            this.lbl_OneDriveFolder.Text = "OneDrive Root Folder:";
+            this.lbl_OneDriveFolder.Text = "Temp Folder:";
             // 
             // b_SaveSettings
             // 
-            this.b_SaveSettings.Location = new System.Drawing.Point(728, 31);
+            this.b_SaveSettings.Location = new System.Drawing.Point(498, 30);
             this.b_SaveSettings.Margin = new System.Windows.Forms.Padding(2);
             this.b_SaveSettings.Name = "b_SaveSettings";
             this.b_SaveSettings.Size = new System.Drawing.Size(56, 20);
@@ -93,9 +87,9 @@
             this.lbl_Interval.Location = new System.Drawing.Point(11, 34);
             this.lbl_Interval.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Interval.Name = "lbl_Interval";
-            this.lbl_Interval.Size = new System.Drawing.Size(112, 13);
+            this.lbl_Interval.Size = new System.Drawing.Size(121, 13);
             this.lbl_Interval.TabIndex = 5;
-            this.lbl_Interval.Text = "Bully Every X Minutes:";
+            this.lbl_Interval.Text = "Check Every X Minutes:";
             // 
             // txt_Interval
             // 
@@ -135,7 +129,7 @@
             // 
             // b_browser
             // 
-            this.b_browser.Location = new System.Drawing.Point(728, 7);
+            this.b_browser.Location = new System.Drawing.Point(498, 7);
             this.b_browser.Margin = new System.Windows.Forms.Padding(2);
             this.b_browser.Name = "b_browser";
             this.b_browser.Size = new System.Drawing.Size(56, 21);
@@ -144,81 +138,16 @@
             this.b_browser.UseVisualStyleBackColor = true;
             this.b_browser.Click += new System.EventHandler(this.b_browser_Click);
             // 
-            // b_addSymLink
-            // 
-            this.b_addSymLink.Location = new System.Drawing.Point(606, 95);
-            this.b_addSymLink.Margin = new System.Windows.Forms.Padding(2);
-            this.b_addSymLink.Name = "b_addSymLink";
-            this.b_addSymLink.Size = new System.Drawing.Size(56, 21);
-            this.b_addSymLink.TabIndex = 5;
-            this.b_addSymLink.Text = "Add";
-            this.b_addSymLink.UseVisualStyleBackColor = true;
-            this.b_addSymLink.Click += new System.EventHandler(this.b_addSymLink_Click);
-            // 
-            // b_DeleteSymLink
-            // 
-            this.b_DeleteSymLink.Location = new System.Drawing.Point(667, 95);
-            this.b_DeleteSymLink.Margin = new System.Windows.Forms.Padding(2);
-            this.b_DeleteSymLink.Name = "b_DeleteSymLink";
-            this.b_DeleteSymLink.Size = new System.Drawing.Size(56, 21);
-            this.b_DeleteSymLink.TabIndex = 6;
-            this.b_DeleteSymLink.Text = "Delete";
-            this.b_DeleteSymLink.UseVisualStyleBackColor = true;
-            this.b_DeleteSymLink.Click += new System.EventHandler(this.b_DeleteSymLink_Click);
-            // 
-            // b_refreshSymLinks
-            // 
-            this.b_refreshSymLinks.Location = new System.Drawing.Point(728, 95);
-            this.b_refreshSymLinks.Margin = new System.Windows.Forms.Padding(2);
-            this.b_refreshSymLinks.Name = "b_refreshSymLinks";
-            this.b_refreshSymLinks.Size = new System.Drawing.Size(56, 21);
-            this.b_refreshSymLinks.TabIndex = 7;
-            this.b_refreshSymLinks.Text = "Refresh";
-            this.b_refreshSymLinks.UseVisualStyleBackColor = true;
-            this.b_refreshSymLinks.Click += new System.EventHandler(this.b_refreshSymLinks_Click);
-            // 
-            // dgv_SymLinks
-            // 
-            this.dgv_SymLinks.AllowUserToAddRows = false;
-            this.dgv_SymLinks.AllowUserToDeleteRows = false;
-            this.dgv_SymLinks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_SymLinks.Location = new System.Drawing.Point(13, 120);
-            this.dgv_SymLinks.Margin = new System.Windows.Forms.Padding(2);
-            this.dgv_SymLinks.MultiSelect = false;
-            this.dgv_SymLinks.Name = "dgv_SymLinks";
-            this.dgv_SymLinks.ReadOnly = true;
-            this.dgv_SymLinks.RowTemplate.Height = 24;
-            this.dgv_SymLinks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgv_SymLinks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_SymLinks.Size = new System.Drawing.Size(772, 333);
-            this.dgv_SymLinks.TabIndex = 13;
-            // 
             // fbd_SymLinks
             // 
             this.fbd_SymLinks.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            // 
-            // lbl_SymbolicLinks
-            // 
-            this.lbl_SymbolicLinks.AutoSize = true;
-            this.lbl_SymbolicLinks.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_SymbolicLinks.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbl_SymbolicLinks.Location = new System.Drawing.Point(9, 94);
-            this.lbl_SymbolicLinks.Name = "lbl_SymbolicLinks";
-            this.lbl_SymbolicLinks.Size = new System.Drawing.Size(127, 20);
-            this.lbl_SymbolicLinks.TabIndex = 14;
-            this.lbl_SymbolicLinks.Text = "Symbolic Links";
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(793, 464);
-            this.Controls.Add(this.lbl_SymbolicLinks);
-            this.Controls.Add(this.dgv_SymLinks);
-            this.Controls.Add(this.b_refreshSymLinks);
-            this.Controls.Add(this.b_DeleteSymLink);
-            this.Controls.Add(this.b_addSymLink);
+            this.ClientSize = new System.Drawing.Size(565, 101);
             this.Controls.Add(this.b_browser);
             this.Controls.Add(this.cb_LoadOnWindowsStartup);
             this.Controls.Add(this.lbl_WindowsStartup);
@@ -227,16 +156,16 @@
             this.Controls.Add(this.b_SaveSettings);
             this.Controls.Add(this.lbl_OneDriveFolder);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txt_OneDriveFolder);
+            this.Controls.Add(this.txt_TempFolder);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "SettingsForm";
-            this.Text = "OneDrive Bully - Settings";
+            this.Text = "Domain Account Lock- Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_SymLinks)).EndInit();
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,7 +173,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txt_OneDriveFolder;
+        private System.Windows.Forms.TextBox txt_TempFolder;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_OneDriveFolder;
         private System.Windows.Forms.Button b_SaveSettings;
@@ -254,11 +183,6 @@
         private System.Windows.Forms.CheckBox cb_LoadOnWindowsStartup;
         private System.Windows.Forms.FolderBrowserDialog fbd_OneDrivePath;
         private System.Windows.Forms.Button b_browser;
-        private System.Windows.Forms.Button b_addSymLink;
-        private System.Windows.Forms.Button b_DeleteSymLink;
-        private System.Windows.Forms.Button b_refreshSymLinks;
-        private System.Windows.Forms.DataGridView dgv_SymLinks;
         private System.Windows.Forms.FolderBrowserDialog fbd_SymLinks;
-        private System.Windows.Forms.Label lbl_SymbolicLinks;
     }
 }

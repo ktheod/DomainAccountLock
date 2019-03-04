@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.IO;
 
-namespace OneDriveBully
+namespace DomainAccountLock
 {
     public partial class SettingsForm : Form
     {
@@ -28,28 +28,23 @@ namespace OneDriveBully
         {
             // Load user settings and update form controls
             Properties.Settings.Default.Reload();
-            txt_OneDriveFolder.Text = Properties.Settings.Default.OneDriveRootFolder;
+            txt_TempFolder.Text = Properties.Settings.Default.TempFolder;
             txt_Interval.Text = Properties.Settings.Default.TimerInterval.ToString();
             cb_LoadOnWindowsStartup.Checked = Properties.Settings.Default.LoadOnWindowsStartup;
             isDirty = false;
-
-            if (Properties.Settings.Default.UserDefinedSettings)
-            {
-                refresh_dgv();
-            }
         }
 
         private bool validateSettings()
         {
             // Check OneDrive Root Folder exists
-            if (txt_OneDriveFolder.Text == "")
+            if (txt_TempFolder.Text == "")
             {
-                MessageBox.Show("OneDrive root folder must have a value", "Value Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Temp folder must have a value", "Value Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (!Directory.Exists(@txt_OneDriveFolder.Text + @"\"))
+            if (!Directory.Exists(txt_TempFolder.Text + @"\"))
             {
-                MessageBox.Show("OneDrive root folder not found.", "Value Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Temp folder not found.", "Value Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -81,7 +76,7 @@ namespace OneDriveBully
         private void saveSettings()
         {           
             // Save user settings
-            Properties.Settings.Default.OneDriveRootFolder = txt_OneDriveFolder.Text;
+            Properties.Settings.Default.TempFolder = txt_TempFolder.Text;
             Properties.Settings.Default.TimerInterval = Convert.ToInt32(txt_Interval.Text);
             Properties.Settings.Default.LoadOnWindowsStartup = cb_LoadOnWindowsStartup.Checked;
             Properties.Settings.Default.UserDefinedSettings = true;
@@ -133,7 +128,7 @@ namespace OneDriveBully
             {
                 if (fbd_OneDrivePath.SelectedPath != null)
                 {
-                    txt_OneDriveFolder.Text = fbd_OneDrivePath.SelectedPath;
+                    txt_TempFolder.Text = fbd_OneDrivePath.SelectedPath;
                 }                
             }
             isDirty = true;
@@ -157,68 +152,9 @@ namespace OneDriveBully
 
         #endregion Form Controls
 
-        #region Symbolic Link Form Controls & Functions
-
-        private void b_addSymLink_Click(object sender, EventArgs e)
+        private void SettingsForm_Load(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd_SymLinks = new FolderBrowserDialog();
-            if (fbd_SymLinks.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
-            {
-                if (fbd_SymLinks.SelectedPath != null || fbd_SymLinks.SelectedPath != "")
-                {
-                    string fAdd = fbd_SymLinks.SelectedPath + @"\";
-                    string fAddName = System.IO.Path.GetDirectoryName(fAdd);
-                    System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(fAddName);
-                    fAddName = info.Name;
 
-                    if (fAdd != "" && fAddName != "")
-                    {
-                        if (ProcessIcon.fn.createSymbolicLink(@Properties.Settings.Default.OneDriveRootFolder + @"\" + @fAddName, @fAdd))
-                        {
-                            refresh_dgv();
-                        }
-                    }
-                }
-            }       
         }
-
-        private void b_DeleteSymLink_Click(object sender, EventArgs e)
-        {
-            if (dgv_SymLinks.SelectedRows != null)
-            {
-                string fDel = SymLinksTable.Rows[dgv_SymLinks.SelectedRows[0].Index].ItemArray[1].ToString();
-                string fDelName = SymLinksTable.Rows[dgv_SymLinks.SelectedRows[0].Index].ItemArray[2].ToString();
-                if (MessageBox.Show("Do you want to delete this Symbolic Link?", "Delete confirmation",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    if (ProcessIcon.fn.deleteSymbolicLink(@fDel))
-                    {
-                        refresh_dgv();
-                    }
-                }
-            }
-        }
-
-        private void b_refreshSymLinks_Click(object sender, EventArgs e)
-        {
-            refresh_dgv();
-        }
-
-        private void refresh_dgv()
-        {
-            SymLinksTable = new DataTable();
-            SymLinksTable = ProcessIcon.fn.getOneDriveForSymLinks();
-            if (SymLinksTable.Rows.Count > 0)
-            {
-                dgv_SymLinks.DataSource = SymLinksTable;
-                dgv_SymLinks.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dgv_SymLinks.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dgv_SymLinks.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dgv_SymLinks.Refresh();
-            }
-        }
-
-        #endregion Symbolic Link Form Controls & Functions
-
     }
 }

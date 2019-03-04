@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows.Forms;
-using OneDriveBully.Properties;
+using DomainAccountLock.Properties;
 
-namespace OneDriveBully
+namespace DomainAccountLock
 {
 	partial class AboutBox : Form
 	{
@@ -16,13 +16,13 @@ namespace OneDriveBully
 			this.labelCopyright.Text = AssemblyCopyright;
 			this.labelCompanyName.Text = AssemblyCompany;
 			this.textBoxDescription.Text = AssemblyDescription;
-            this.linkLabelFacebook.Text = "http://www.facebook.com/OneDriveBully";
-            this.labelContactEmail.Text = "odbully@outlook.com";
+            this.linkLabelFacebook.Text = "http://www.facebook.com/DomainAccountLock";
+            this.labelContactEmail.Text = "k.theod@outlook.com";
         }
 
         private void linkLabelFacebook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://facebook.com/OneDriveBully");
+            System.Diagnostics.Process.Start("http://facebook.com/DomainAccountLock");
         }
 
         #region Assembly Attribute Accessors

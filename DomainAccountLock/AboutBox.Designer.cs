@@ -37,7 +37,7 @@
             this.labelCompanyName = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
-            this.linkLabelFacebook = new System.Windows.Forms.LinkLabel();
+            this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +55,7 @@
             this.tableLayoutPanel.Controls.Add(this.labelCompanyName, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 8);
             this.tableLayoutPanel.Controls.Add(this.okButton, 1, 9);
-            this.tableLayoutPanel.Controls.Add(this.linkLabelFacebook, 1, 4);
+            this.tableLayoutPanel.Controls.Add(this.linkLabelGitHub, 1, 4);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(9, 9);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -170,17 +170,17 @@
             this.okButton.TabIndex = 24;
             this.okButton.Text = "&OK";
             // 
-            // linkLabelFacebook
+            // linkLabelGitHub
             // 
-            this.linkLabelFacebook.AutoSize = true;
-            this.linkLabelFacebook.Location = new System.Drawing.Point(143, 74);
-            this.linkLabelFacebook.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.linkLabelFacebook.Name = "linkLabelFacebook";
-            this.linkLabelFacebook.Size = new System.Drawing.Size(85, 13);
-            this.linkLabelFacebook.TabIndex = 27;
-            this.linkLabelFacebook.TabStop = true;
-            this.linkLabelFacebook.Text = "Facebook Page";
-            this.linkLabelFacebook.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelFacebook_LinkClicked);
+            this.linkLabelGitHub.AutoSize = true;
+            this.linkLabelGitHub.Location = new System.Drawing.Point(143, 74);
+            this.linkLabelGitHub.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
+            this.linkLabelGitHub.Name = "linkLabelGitHub";
+            this.linkLabelGitHub.Size = new System.Drawing.Size(72, 13);
+            this.linkLabelGitHub.TabIndex = 27;
+            this.linkLabelGitHub.TabStop = true;
+            this.linkLabelGitHub.Text = "GitHub Page";
+            this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
             // 
             // AboutBox
             // 
@@ -199,7 +199,7 @@
             this.Padding = new System.Windows.Forms.Padding(9);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "About OneDrive Bully";
+            this.Text = "About DomainAccountLock";
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
@@ -216,7 +216,7 @@
 		private System.Windows.Forms.Label labelCompanyName;
 		private System.Windows.Forms.TextBox textBoxDescription;
 		private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.LinkLabel linkLabelFacebook;
+        private System.Windows.Forms.LinkLabel linkLabelGitHub;
         private System.Windows.Forms.Label labelContactEmail;
         private System.Windows.Forms.Label labelCopyright;
     }

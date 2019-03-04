@@ -16,13 +16,13 @@ namespace DomainAccountLock
 			this.labelCopyright.Text = AssemblyCopyright;
 			this.labelCompanyName.Text = AssemblyCompany;
 			this.textBoxDescription.Text = AssemblyDescription;
-            this.linkLabelFacebook.Text = "http://www.facebook.com/DomainAccountLock";
+            this.linkLabelGitHub.Text = "https://github.com/ktheod/DomainAccountLock";
             this.labelContactEmail.Text = "k.theod@outlook.com";
         }
 
-        private void linkLabelFacebook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://facebook.com/DomainAccountLock");
+            System.Diagnostics.Process.Start("https://github.com/ktheod/DomainAccountLock");
         }
 
         #region Assembly Attribute Accessors

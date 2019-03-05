@@ -1,20 +1,13 @@
 # DomainAccountLock
-Have a lot of folders you want to sync to OneDrive but not enough space in your main hard drive? 
+Based on MS ALTools LockoutStatus application.
 
-I did, I had all my photos on the D:\ drive but OneDrive was requiring to copy them to the OneDrive folder in C:\ . But my C:\ is not big enough.
+This application runs as a task icon and can be triggered either on demand or on a timer.
+It executes an Powershell script to ping the Domain Controllers and get same information as the LockoutStatus app. Results are saved in a CSV file for further processing but also for user visibility.
 
-OneDrive Bully was developed to solve exactly that.
+It periodically checks all or configured Domain Controllers for a specific domain username and updates the tray icon with the current Bad Pwd Count displayed as a number, so that you don't have to check the CSV results file for the details. 
 
-It uses Windows Symbolic Links to link your folders sitting outside your OneDrive folder in any hard drive or network path. OneDrive doesn't support it currently. It will simply ignore any changes to these folders.
+If the count is above 3 it will also play a beep sound (sounds can be disabled from settings), then again above 5 and lastly above 7.
 
-OneDrive Bully solves the issue by triggering OneDrive to sync, including these folders on a timer you set. The best thing is it is doing it without affecting the standard OneDrive application or requiring you to login to another OneDrive client.
+Usually locking the computer and then logging in again, will zero the counter in the affected Domain Controllers.
 
-You can also double click the icon and force sync whenever you want.
-
-Saved the best for last, OneDrive is Free!
-
-Bully your OneDrive!
-
-Track OneDrive Bully news and updates also on Facebook: https://www.facebook.com/pg/DomainAccountLock
-
-Released Application can be downloaded from here: https://github.com/ktheod/DomainAccountLock/releases
+Hopefully helpful for periods of frequent domain account lockouts and during debuging.

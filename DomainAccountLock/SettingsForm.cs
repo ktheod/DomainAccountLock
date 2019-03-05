@@ -28,23 +28,26 @@ namespace DomainAccountLock
         {
             // Load user settings and update form controls
             Properties.Settings.Default.Reload();
-            txt_TempFolder.Text = Properties.Settings.Default.TempFolder;
+            txt_RootFolder.Text = Properties.Settings.Default.RootFolder;
             txt_Interval.Text = Properties.Settings.Default.TimerInterval.ToString();
             cb_LoadOnWindowsStartup.Checked = Properties.Settings.Default.LoadOnWindowsStartup;
+            txt_DCList.Text = Properties.Settings.Default.DCList.ToString();
+            txt_UserName.Text = Properties.Settings.Default.UserName.ToString();
+            cb_PlaySounds.Checked = Properties.Settings.Default.PlaySounds;
             isDirty = false;
         }
 
         private bool validateSettings()
         {
-            // Check OneDrive Root Folder exists
-            if (txt_TempFolder.Text == "")
+            // Check Root Folder exists
+            if (txt_RootFolder.Text == "")
             {
-                MessageBox.Show("Temp folder must have a value", "Value Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Root folder must have a value", "Value Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (!Directory.Exists(txt_TempFolder.Text + @"\"))
+            if (!Directory.Exists(txt_RootFolder.Text + @"\"))
             {
-                MessageBox.Show("Temp folder not found.", "Value Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Root folder not found.", "Value Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -70,16 +73,25 @@ namespace DomainAccountLock
                 return false;
             }
 
+            if (txt_UserName.Text == "")
+            {
+                MessageBox.Show("UserName must have a value", "Value Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             return true;
         }
 
         private void saveSettings()
         {           
             // Save user settings
-            Properties.Settings.Default.TempFolder = txt_TempFolder.Text;
+            Properties.Settings.Default.RootFolder = txt_RootFolder.Text;
             Properties.Settings.Default.TimerInterval = Convert.ToInt32(txt_Interval.Text);
             Properties.Settings.Default.LoadOnWindowsStartup = cb_LoadOnWindowsStartup.Checked;
             Properties.Settings.Default.UserDefinedSettings = true;
+            Properties.Settings.Default.DCList = txt_DCList.Text;
+            Properties.Settings.Default.UserName = txt_UserName.Text;
+            Properties.Settings.Default.PlaySounds = cb_PlaySounds.Checked;
             Properties.Settings.Default.Save();
             isDirty = false;
 
@@ -123,12 +135,12 @@ namespace DomainAccountLock
 
         private void b_browser_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd_OneDrivePath = new FolderBrowserDialog();
-            if (fbd_OneDrivePath.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
+            FolderBrowserDialog fbd_RootPath = new FolderBrowserDialog();
+            if (fbd_RootPath.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
             {
-                if (fbd_OneDrivePath.SelectedPath != null)
+                if (fbd_RootPath.SelectedPath != null)
                 {
-                    txt_TempFolder.Text = fbd_OneDrivePath.SelectedPath;
+                    txt_RootFolder.Text = fbd_RootPath.SelectedPath;
                 }                
             }
             isDirty = true;
@@ -151,10 +163,5 @@ namespace DomainAccountLock
         }
 
         #endregion Form Controls
-
-        private void SettingsForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

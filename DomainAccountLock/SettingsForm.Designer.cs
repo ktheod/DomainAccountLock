@@ -29,27 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            this.txt_TempFolder = new System.Windows.Forms.TextBox();
+            this.txt_RootFolder = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbl_OneDriveFolder = new System.Windows.Forms.Label();
+            this.lbl_RootFolder = new System.Windows.Forms.Label();
             this.b_SaveSettings = new System.Windows.Forms.Button();
             this.lbl_Interval = new System.Windows.Forms.Label();
             this.txt_Interval = new System.Windows.Forms.TextBox();
             this.lbl_WindowsStartup = new System.Windows.Forms.Label();
             this.cb_LoadOnWindowsStartup = new System.Windows.Forms.CheckBox();
-            this.fbd_OneDrivePath = new System.Windows.Forms.FolderBrowserDialog();
+            this.fbd_RootPath = new System.Windows.Forms.FolderBrowserDialog();
             this.b_browser = new System.Windows.Forms.Button();
-            this.fbd_SymLinks = new System.Windows.Forms.FolderBrowserDialog();
+            this.lbl_DCList = new System.Windows.Forms.Label();
+            this.txt_DCList = new System.Windows.Forms.TextBox();
+            this.lbl_UserName = new System.Windows.Forms.Label();
+            this.txt_UserName = new System.Windows.Forms.TextBox();
+            this.cb_PlaySounds = new System.Windows.Forms.CheckBox();
+            this.lbl_PlaySounds = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txt_TempFolder
+            // txt_RootFolder
             // 
-            this.txt_TempFolder.Location = new System.Drawing.Point(144, 8);
-            this.txt_TempFolder.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_TempFolder.Name = "txt_TempFolder";
-            this.txt_TempFolder.ReadOnly = true;
-            this.txt_TempFolder.Size = new System.Drawing.Size(287, 20);
-            this.txt_TempFolder.TabIndex = 0;
+            this.txt_RootFolder.Location = new System.Drawing.Point(144, 8);
+            this.txt_RootFolder.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_RootFolder.Name = "txt_RootFolder";
+            this.txt_RootFolder.ReadOnly = true;
+            this.txt_RootFolder.Size = new System.Drawing.Size(350, 20);
+            this.txt_RootFolder.TabIndex = 0;
             // 
             // label1
             // 
@@ -60,15 +65,15 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 1;
             // 
-            // lbl_OneDriveFolder
+            // lbl_RootFolder
             // 
-            this.lbl_OneDriveFolder.AutoSize = true;
-            this.lbl_OneDriveFolder.Location = new System.Drawing.Point(11, 11);
-            this.lbl_OneDriveFolder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_OneDriveFolder.Name = "lbl_OneDriveFolder";
-            this.lbl_OneDriveFolder.Size = new System.Drawing.Size(69, 13);
-            this.lbl_OneDriveFolder.TabIndex = 2;
-            this.lbl_OneDriveFolder.Text = "Temp Folder:";
+            this.lbl_RootFolder.AutoSize = true;
+            this.lbl_RootFolder.Location = new System.Drawing.Point(11, 11);
+            this.lbl_RootFolder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_RootFolder.Name = "lbl_RootFolder";
+            this.lbl_RootFolder.Size = new System.Drawing.Size(65, 13);
+            this.lbl_RootFolder.TabIndex = 2;
+            this.lbl_RootFolder.Text = "Root Folder:";
             // 
             // b_SaveSettings
             // 
@@ -104,7 +109,7 @@
             // lbl_WindowsStartup
             // 
             this.lbl_WindowsStartup.AutoSize = true;
-            this.lbl_WindowsStartup.Location = new System.Drawing.Point(10, 58);
+            this.lbl_WindowsStartup.Location = new System.Drawing.Point(11, 55);
             this.lbl_WindowsStartup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_WindowsStartup.Name = "lbl_WindowsStartup";
             this.lbl_WindowsStartup.Size = new System.Drawing.Size(130, 13);
@@ -114,7 +119,7 @@
             // cb_LoadOnWindowsStartup
             // 
             this.cb_LoadOnWindowsStartup.AutoSize = true;
-            this.cb_LoadOnWindowsStartup.Location = new System.Drawing.Point(144, 57);
+            this.cb_LoadOnWindowsStartup.Location = new System.Drawing.Point(144, 55);
             this.cb_LoadOnWindowsStartup.Margin = new System.Windows.Forms.Padding(2);
             this.cb_LoadOnWindowsStartup.Name = "cb_LoadOnWindowsStartup";
             this.cb_LoadOnWindowsStartup.Size = new System.Drawing.Size(15, 14);
@@ -122,10 +127,10 @@
             this.cb_LoadOnWindowsStartup.UseVisualStyleBackColor = true;
             this.cb_LoadOnWindowsStartup.CheckedChanged += new System.EventHandler(this.cb_LoadOnWindowsStartup_CheckedChanged);
             // 
-            // fbd_OneDrivePath
+            // fbd_RootPath
             // 
-            this.fbd_OneDrivePath.RootFolder = System.Environment.SpecialFolder.UserProfile;
-            this.fbd_OneDrivePath.ShowNewFolderButton = false;
+            this.fbd_RootPath.RootFolder = System.Environment.SpecialFolder.UserProfile;
+            this.fbd_RootPath.ShowNewFolderButton = false;
             // 
             // b_browser
             // 
@@ -138,34 +143,91 @@
             this.b_browser.UseVisualStyleBackColor = true;
             this.b_browser.Click += new System.EventHandler(this.b_browser_Click);
             // 
-            // fbd_SymLinks
+            // lbl_DCList
             // 
-            this.fbd_SymLinks.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.lbl_DCList.AutoSize = true;
+            this.lbl_DCList.Location = new System.Drawing.Point(11, 115);
+            this.lbl_DCList.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_DCList.Name = "lbl_DCList";
+            this.lbl_DCList.Size = new System.Drawing.Size(44, 13);
+            this.lbl_DCList.TabIndex = 9;
+            this.lbl_DCList.Text = "DC List:";
+            // 
+            // txt_DCList
+            // 
+            this.txt_DCList.Location = new System.Drawing.Point(144, 112);
+            this.txt_DCList.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_DCList.Name = "txt_DCList";
+            this.txt_DCList.Size = new System.Drawing.Size(350, 20);
+            this.txt_DCList.TabIndex = 8;
+            // 
+            // lbl_UserName
+            // 
+            this.lbl_UserName.AutoSize = true;
+            this.lbl_UserName.Location = new System.Drawing.Point(11, 91);
+            this.lbl_UserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_UserName.Name = "lbl_UserName";
+            this.lbl_UserName.Size = new System.Drawing.Size(60, 13);
+            this.lbl_UserName.TabIndex = 11;
+            this.lbl_UserName.Text = "UserName:";
+            // 
+            // txt_UserName
+            // 
+            this.txt_UserName.Location = new System.Drawing.Point(144, 88);
+            this.txt_UserName.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_UserName.Name = "txt_UserName";
+            this.txt_UserName.Size = new System.Drawing.Size(350, 20);
+            this.txt_UserName.TabIndex = 10;
+            // 
+            // cb_PlaySounds
+            // 
+            this.cb_PlaySounds.AutoSize = true;
+            this.cb_PlaySounds.Location = new System.Drawing.Point(144, 136);
+            this.cb_PlaySounds.Margin = new System.Windows.Forms.Padding(2);
+            this.cb_PlaySounds.Name = "cb_PlaySounds";
+            this.cb_PlaySounds.Size = new System.Drawing.Size(15, 14);
+            this.cb_PlaySounds.TabIndex = 12;
+            this.cb_PlaySounds.UseVisualStyleBackColor = true;
+            // 
+            // lbl_PlaySounds
+            // 
+            this.lbl_PlaySounds.AutoSize = true;
+            this.lbl_PlaySounds.Location = new System.Drawing.Point(11, 136);
+            this.lbl_PlaySounds.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_PlaySounds.Name = "lbl_PlaySounds";
+            this.lbl_PlaySounds.Size = new System.Drawing.Size(66, 13);
+            this.lbl_PlaySounds.TabIndex = 13;
+            this.lbl_PlaySounds.Text = "Play Sounds";
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(565, 101);
+            this.ClientSize = new System.Drawing.Size(565, 158);
+            this.Controls.Add(this.cb_PlaySounds);
+            this.Controls.Add(this.lbl_PlaySounds);
+            this.Controls.Add(this.lbl_UserName);
+            this.Controls.Add(this.txt_UserName);
+            this.Controls.Add(this.lbl_DCList);
+            this.Controls.Add(this.txt_DCList);
             this.Controls.Add(this.b_browser);
             this.Controls.Add(this.cb_LoadOnWindowsStartup);
             this.Controls.Add(this.lbl_WindowsStartup);
             this.Controls.Add(this.lbl_Interval);
             this.Controls.Add(this.txt_Interval);
             this.Controls.Add(this.b_SaveSettings);
-            this.Controls.Add(this.lbl_OneDriveFolder);
+            this.Controls.Add(this.lbl_RootFolder);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txt_TempFolder);
+            this.Controls.Add(this.txt_RootFolder);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "SettingsForm";
-            this.Text = "Domain Account Lock- Settings";
+            this.Text = "Domain Account Lock - Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,16 +235,21 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txt_TempFolder;
+        private System.Windows.Forms.TextBox txt_RootFolder;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lbl_OneDriveFolder;
+        private System.Windows.Forms.Label lbl_RootFolder;
         private System.Windows.Forms.Button b_SaveSettings;
         private System.Windows.Forms.Label lbl_Interval;
         private System.Windows.Forms.TextBox txt_Interval;
         private System.Windows.Forms.Label lbl_WindowsStartup;
         private System.Windows.Forms.CheckBox cb_LoadOnWindowsStartup;
-        private System.Windows.Forms.FolderBrowserDialog fbd_OneDrivePath;
+        private System.Windows.Forms.FolderBrowserDialog fbd_RootPath;
         private System.Windows.Forms.Button b_browser;
-        private System.Windows.Forms.FolderBrowserDialog fbd_SymLinks;
+        private System.Windows.Forms.Label lbl_DCList;
+        private System.Windows.Forms.TextBox txt_DCList;
+        private System.Windows.Forms.Label lbl_UserName;
+        private System.Windows.Forms.TextBox txt_UserName;
+        private System.Windows.Forms.CheckBox cb_PlaySounds;
+        private System.Windows.Forms.Label lbl_PlaySounds;
     }
 }

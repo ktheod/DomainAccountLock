@@ -8,6 +8,12 @@ using System.Security.Principal;
 using System.Data;
 using DomainAccountLock.Properties;
 using System.Threading;
+using System.Collections.ObjectModel;
+using System.Management.Automation;
+using System.Management.Automation.Runspaces;
+using System.Text;
+using System.Reflection;
+using System.Collections.Generic;
 
 namespace DomainAccountLock
 {
@@ -16,12 +22,15 @@ namespace DomainAccountLock
         //User Settings Variables
         public bool UserDefinedSettingsExist;
         private string rootPath;
-        private string fileName = @"\DomainAccountLock_Results.csv";
+        private string fileName = "DomainAccountLock_Results.csv";
 
         //Timer Variables
         private System.Timers.Timer MyTimer;
         private Int32 interval;
         private Int32 timeRemaining;
+
+        private bool fileIsOpen;
+        private int ErrorCount = 0;
 
         public void initApp()
         {
@@ -29,13 +38,13 @@ namespace DomainAccountLock
             checkUserSettings();
             if (UserDefinedSettingsExist)
             {                
-                setTimerInterval(Properties.Settings.Default.TimerInterval);
+                setTimerInterval(Properties.Settings.Default.TimerInterval * 60 * 1000);
             }
         }
 
         #region User Settings
 
-        public bool checkUserSettings() //Version 1.1 - Bug Fix -+
+        public bool checkUserSettings()
         {
             //Check if user has updated the User Settings
             if (!Properties.Settings.Default.UserDefinedSettings)
@@ -51,18 +60,18 @@ namespace DomainAccountLock
             if (!UserDefinedSettingsExist)
             {
                 WrongSettings();
-                return false; //Version 1.1 - Bug Fix -+
+                return false; 
             }
             else
             {
-                //Check OneDrive root Path
-                rootPath = @Properties.Settings.Default.TempFolder + @"\";
+                //Check Root Path
+                rootPath = @Properties.Settings.Default.RootFolder + @"\";
                 if (rootPath != null)
                 {
                     if (!Directory.Exists(rootPath))
                     {
                         WrongSettings();
-                        return false; //Version 1.1 - Bug Fix -+
+                        return false;
                     }
                 }
 
@@ -70,10 +79,17 @@ namespace DomainAccountLock
                 if(Properties.Settings.Default.TimerInterval <1)
                 {
                     WrongSettings();
-                    return false; //Version 1.1 - Bug Fix -+
+                    return false;
+                }
+
+                //Check UserName
+                if (Properties.Settings.Default.UserName == null)
+                {
+                    WrongSettings();
+                    return false;
                 }
             }
-            return true; //Version 1.1 - Bug Fix -+
+            return true;
         }
 
         public void WrongSettings()
@@ -101,20 +117,20 @@ namespace DomainAccountLock
             }
             else
             {
-                interval = newInterval * 60 * 1000;
+                interval = 1 * 60 * 1000; //Update every minute
                 MyTimer.Interval = interval;
 
                 stopTimer();
-                startTimer();
+                startTimer(newInterval);
             }
         }
 
-        public void startTimer()
+        public void startTimer(Int32 newInterval)
         {
             MyTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             MyTimer.Enabled = true;
 
-            timeRemaining = interval;
+            timeRemaining = newInterval;
             UpdateIconText(0);
         }
 
@@ -130,9 +146,11 @@ namespace DomainAccountLock
             if (timeRemaining <= 0)
             {
                 CheckNow();
-                timeRemaining = interval;
             }
-            UpdateIconText(0);
+            else
+            {
+                UpdateIconText(0);
+            }
         }
 
         private void UpdateIconText(int ProgressStatus)
@@ -140,7 +158,7 @@ namespace DomainAccountLock
             switch (ProgressStatus)
             {
                 case 0:
-                    ProcessIcon.ni.Icon = Resources.StandardIcon;
+                    //ProcessIcon.ni.Icon = Resources.StandardIcon;
                     ProcessIcon.ni.Text = "Domain Account Lock" + " - Next Check in: "
                     + (timeRemaining / 60 / 1000).ToString() + " minutes";
                     break;
@@ -158,7 +176,55 @@ namespace DomainAccountLock
                     + (timeRemaining / 60 / 1000).ToString() + " minutes";
                     break;
             }
+        }
 
+        private void UpdateCounter(int Count,bool calledFromCheck)
+        {
+            switch (Count)
+            {
+                case 0:
+                    ProcessIcon.ni.Icon = Resources._0;
+                    break;
+                case 1:
+                    ProcessIcon.ni.Icon = Resources._1;
+                    break;
+                case 2:
+                    ProcessIcon.ni.Icon = Resources._2;
+                    break;
+                case 3:
+                    ProcessIcon.ni.Icon = Resources._3;
+                    break;
+                case 4:
+                    ProcessIcon.ni.Icon = Resources._4;
+                    break;
+                case 5:
+                    ProcessIcon.ni.Icon = Resources._5;
+                    break;
+                case 6:
+                    ProcessIcon.ni.Icon = Resources._6;
+                    break;
+                case 7:
+                    ProcessIcon.ni.Icon = Resources._7;
+                    break;
+                case 8:
+                    ProcessIcon.ni.Icon = Resources._8;
+                    break;
+                case 9:
+                    ProcessIcon.ni.Icon = Resources._9;
+                    break;
+                default:
+                    ProcessIcon.ni.Icon = Resources.warning;
+                    break;
+            }
+
+            //Play Sound
+            if ((Properties.Settings.Default.PlaySounds) && calledFromCheck)
+            {
+                //if (Count > 0) Console.Beep();
+                if (Count > 3) Console.Beep();
+                if (Count > 5) Console.Beep();
+                if (Count > 7) Console.Beep();
+            }
         }
 
         #endregion Timer Related Functions
@@ -167,27 +233,84 @@ namespace DomainAccountLock
 
         public void CheckNow()
         {
-            UpdateIconText(1);
-            if (checkUserSettings())
+            if (!fileIsOpen)
             {
-                if (File.Exists(rootPath + fileName))
+                UpdateIconText(1);
+                if (checkUserSettings())
                 {
-                    File.Delete(rootPath + fileName);
-                }
+                    if (File.Exists(rootPath + fileName))
+                    {
+                        File.Delete(rootPath + fileName);
+                    }
 
-                File.Create(rootPath + fileName).Close();
-                Thread.Sleep(5000);
-                if (File.Exists(rootPath + fileName))
-                {
-                    File.Delete(rootPath + fileName);
-                }
+                    RunPowerShell();
+                    CheckResults();
 
-                Thread.Sleep(5000);
-                setTimerInterval(Properties.Settings.Default.TimerInterval);
+                    Thread.Sleep(5000);
+                    setTimerInterval(Properties.Settings.Default.TimerInterval * 60 * 1000);
+                }
             }
         }
 
-        #endregion Bully Function
+        private void RunPowerShell()
+        {
+            using (Runspace runspace = RunspaceFactory.CreateRunspace())
+            {
+                runspace.Open();
+                PowerShell ps = PowerShell.Create();
+                ps.Runspace = runspace;
+                ps.AddScript(Encoding.Default.GetString(Resources.FindUserBadPwdAttempts));
+                ps.Invoke();
+
+                Command command = new Command("CheckUser", false);
+                CommandParameter userParam = new CommandParameter("UserName", Settings.Default.UserName.ToString());
+                CommandParameter DCParam = new CommandParameter("DCs", Settings.Default.DCList.ToString());
+                CommandParameter FilePathParam = new CommandParameter("FilePath", Settings.Default.RootFolder.ToString());
+                CommandParameter FileNameParam = new CommandParameter("FileName", fileName);
+                command.Parameters.Add(userParam);
+                command.Parameters.Add(DCParam);
+                command.Parameters.Add(FilePathParam);
+                command.Parameters.Add(FileNameParam);
+
+                ps.Commands.AddCommand(command);
+                ps.Invoke();
+                ps.Dispose();
+                runspace.Close();
+                runspace.Dispose();
+            }
+        }
+
+        private void CheckResults()
+        {
+            StreamReader reader = new StreamReader(File.OpenRead(rootPath + fileName));
+            string headerLine = reader.ReadLine();
+
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+                ErrorCount = Convert.ToInt16(values[7]);
+                UpdateCounter(ErrorCount,true);
+            }
+
+            reader.Close();
+            reader.Dispose();
+        }
+
+        public void SetFileOpen(bool open)
+        {
+            fileIsOpen = open;
+            if(!fileIsOpen)
+            {
+                UpdateIconText(0);
+                UpdateCounter(ErrorCount,false);
+            }
+            else
+            {
+                UpdateIconText(2);
+            }
+        }
+        #endregion Check Function
 
         #region Windows Registry Related Functions 
 

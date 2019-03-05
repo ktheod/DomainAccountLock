@@ -18,14 +18,20 @@ namespace DomainAccountLock
 			ToolStripMenuItem item;
 			ToolStripSeparator sep;
 
-			// Bully Now.
+			// Check Now.
 			item = new ToolStripMenuItem();
 			item.Text = "Check Now";
 			item.Click += new EventHandler(Check_Click);
 			menu.Items.Add(item);
 
-			// Settings.
-			item = new ToolStripMenuItem();
+            // Open CSV File.
+            item = new ToolStripMenuItem();
+            item.Text = "Open Results";
+            item.Click += new EventHandler(Open_Results);
+            menu.Items.Add(item);
+
+            // Settings.
+            item = new ToolStripMenuItem();
 			item.Text = "Settings";
 			item.Click += new EventHandler(Settings_Click);
 			menu.Items.Add(item);
@@ -53,6 +59,23 @@ namespace DomainAccountLock
 		{
             ProcessIcon.fn.CheckNow();
 		}
+
+        void Open_Results(object sender, EventArgs e)
+        {
+            ProcessIcon.fn.SetFileOpen(true);
+            var process = new Process();
+            process.StartInfo = new ProcessStartInfo()
+            {
+                UseShellExecute = true,
+                FileName = @Settings.Default.RootFolder + @"\" + "DomainAccountLock_Results.csv"
+            };
+
+            process.Start();
+            process.WaitForExit();
+            process.Close();
+            process.Dispose();
+            ProcessIcon.fn.SetFileOpen(false);
+        }
         void Settings_Click(object sender, EventArgs e)
         {
             if (!isSettingsFormLoaded)

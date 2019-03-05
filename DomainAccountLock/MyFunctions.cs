@@ -282,14 +282,16 @@ namespace DomainAccountLock
 
         private void CheckResults()
         {
+            ErrorCount = 0;
+
             StreamReader reader = new StreamReader(File.OpenRead(rootPath + fileName));
             string headerLine = reader.ReadLine();
-
+            
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
                 var values = line.Split(',');
-                ErrorCount = Convert.ToInt16(values[7]);
+                ErrorCount += Convert.ToInt16(values[7]);
                 UpdateCounter(ErrorCount,true);
             }
 

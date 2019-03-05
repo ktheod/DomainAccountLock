@@ -54,7 +54,7 @@
             this.txt_RootFolder.Name = "txt_RootFolder";
             this.txt_RootFolder.ReadOnly = true;
             this.txt_RootFolder.Size = new System.Drawing.Size(350, 20);
-            this.txt_RootFolder.TabIndex = 0;
+            this.txt_RootFolder.TabIndex = 1;
             // 
             // label1
             // 
@@ -72,7 +72,7 @@
             this.lbl_RootFolder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_RootFolder.Name = "lbl_RootFolder";
             this.lbl_RootFolder.Size = new System.Drawing.Size(65, 13);
-            this.lbl_RootFolder.TabIndex = 2;
+            this.lbl_RootFolder.TabIndex = 0;
             this.lbl_RootFolder.Text = "Root Folder:";
             // 
             // b_SaveSettings
@@ -81,7 +81,7 @@
             this.b_SaveSettings.Margin = new System.Windows.Forms.Padding(2);
             this.b_SaveSettings.Name = "b_SaveSettings";
             this.b_SaveSettings.Size = new System.Drawing.Size(56, 20);
-            this.b_SaveSettings.TabIndex = 4;
+            this.b_SaveSettings.TabIndex = 13;
             this.b_SaveSettings.Text = "Save Settings";
             this.b_SaveSettings.UseVisualStyleBackColor = true;
             this.b_SaveSettings.Click += new System.EventHandler(this.b_SaveSettings_Click);
@@ -93,7 +93,7 @@
             this.lbl_Interval.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Interval.Name = "lbl_Interval";
             this.lbl_Interval.Size = new System.Drawing.Size(121, 13);
-            this.lbl_Interval.TabIndex = 5;
+            this.lbl_Interval.TabIndex = 3;
             this.lbl_Interval.Text = "Check Every X Minutes:";
             // 
             // txt_Interval
@@ -102,7 +102,7 @@
             this.txt_Interval.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Interval.Name = "txt_Interval";
             this.txt_Interval.Size = new System.Drawing.Size(40, 20);
-            this.txt_Interval.TabIndex = 2;
+            this.txt_Interval.TabIndex = 4;
             this.txt_Interval.Text = "0";
             this.txt_Interval.TextChanged += new System.EventHandler(this.txt_Interval_TextChanged);
             // 
@@ -113,7 +113,7 @@
             this.lbl_WindowsStartup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_WindowsStartup.Name = "lbl_WindowsStartup";
             this.lbl_WindowsStartup.Size = new System.Drawing.Size(130, 13);
-            this.lbl_WindowsStartup.TabIndex = 7;
+            this.lbl_WindowsStartup.TabIndex = 5;
             this.lbl_WindowsStartup.Text = "Load on Windows Startup";
             // 
             // cb_LoadOnWindowsStartup
@@ -123,7 +123,7 @@
             this.cb_LoadOnWindowsStartup.Margin = new System.Windows.Forms.Padding(2);
             this.cb_LoadOnWindowsStartup.Name = "cb_LoadOnWindowsStartup";
             this.cb_LoadOnWindowsStartup.Size = new System.Drawing.Size(15, 14);
-            this.cb_LoadOnWindowsStartup.TabIndex = 3;
+            this.cb_LoadOnWindowsStartup.TabIndex = 6;
             this.cb_LoadOnWindowsStartup.UseVisualStyleBackColor = true;
             this.cb_LoadOnWindowsStartup.CheckedChanged += new System.EventHandler(this.cb_LoadOnWindowsStartup_CheckedChanged);
             // 
@@ -138,7 +138,7 @@
             this.b_browser.Margin = new System.Windows.Forms.Padding(2);
             this.b_browser.Name = "b_browser";
             this.b_browser.Size = new System.Drawing.Size(56, 21);
-            this.b_browser.TabIndex = 1;
+            this.b_browser.TabIndex = 2;
             this.b_browser.Text = "Browse";
             this.b_browser.UseVisualStyleBackColor = true;
             this.b_browser.Click += new System.EventHandler(this.b_browser_Click);
@@ -159,7 +159,7 @@
             this.txt_DCList.Margin = new System.Windows.Forms.Padding(2);
             this.txt_DCList.Name = "txt_DCList";
             this.txt_DCList.Size = new System.Drawing.Size(350, 20);
-            this.txt_DCList.TabIndex = 8;
+            this.txt_DCList.TabIndex = 10;
             // 
             // lbl_UserName
             // 
@@ -168,7 +168,7 @@
             this.lbl_UserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_UserName.Name = "lbl_UserName";
             this.lbl_UserName.Size = new System.Drawing.Size(60, 13);
-            this.lbl_UserName.TabIndex = 11;
+            this.lbl_UserName.TabIndex = 7;
             this.lbl_UserName.Text = "UserName:";
             // 
             // txt_UserName
@@ -177,7 +177,7 @@
             this.txt_UserName.Margin = new System.Windows.Forms.Padding(2);
             this.txt_UserName.Name = "txt_UserName";
             this.txt_UserName.Size = new System.Drawing.Size(350, 20);
-            this.txt_UserName.TabIndex = 10;
+            this.txt_UserName.TabIndex = 8;
             // 
             // cb_PlaySounds
             // 
@@ -196,7 +196,7 @@
             this.lbl_PlaySounds.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_PlaySounds.Name = "lbl_PlaySounds";
             this.lbl_PlaySounds.Size = new System.Drawing.Size(66, 13);
-            this.lbl_PlaySounds.TabIndex = 13;
+            this.lbl_PlaySounds.TabIndex = 11;
             this.lbl_PlaySounds.Text = "Play Sounds";
             // 
             // SettingsForm

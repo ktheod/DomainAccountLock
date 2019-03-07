@@ -34,7 +34,7 @@ namespace DomainAccountLock
             ni.Visible = true;
         }
          
-        void ni_MouseDoubleClick(object sender, MouseEventArgs e)
+        public void ni_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             // Handle mouse button clicks.
             if (e.Button == MouseButtons.Left)

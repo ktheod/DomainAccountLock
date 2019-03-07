@@ -170,6 +170,10 @@ namespace DomainAccountLock
                     ProcessIcon.ni.Icon = Resources.IconError;
                     ProcessIcon.ni.Text = "Timer Stopped. Check Settings.";
                     break;
+                case 3:
+                    ProcessIcon.ni.Icon = Resources.IconError;
+                    ProcessIcon.ni.Text = "Check Error. Will retry in " + (timeRemaining / 60 / 1000).ToString() + " minutes";
+                    break;
                 default:
                     ProcessIcon.ni.Icon = Resources.StandardIcon;
                     ProcessIcon.ni.Text = "Domain Account Lock" + " - Next Check in: "
@@ -243,8 +247,23 @@ namespace DomainAccountLock
                         File.Delete(rootPath + fileName);
                     }
 
-                    RunPowerShell();
-                    CheckResults();
+                    try
+                    {
+                        RunPowerShell();
+                    }
+                    catch(Exception ex)
+                    {
+                        UpdateIconText(3);
+                    }
+
+                    try
+                    {
+                        CheckResults();
+                    }
+                    catch (Exception ex)
+                    {
+                        UpdateIconText(3);
+                    }
 
                     Thread.Sleep(5000);
                     setTimerInterval(Properties.Settings.Default.TimerInterval * 60 * 1000);
@@ -309,7 +328,7 @@ namespace DomainAccountLock
             }
             else
             {
-                UpdateIconText(2);
+                UpdateIconText(3);
             }
         }
         #endregion Check Function

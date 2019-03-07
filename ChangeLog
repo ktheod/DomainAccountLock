@@ -1,0 +1,2 @@
+V.1.0.0 05/03/19 - Initial development
+V.1.0.1 07/03/19 - Updated to run Powershell in Try/Catch to manage gracefully unsuccessful runs (because of temporary VPN disconnection, network issues etc.).
